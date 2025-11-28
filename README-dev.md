@@ -50,3 +50,13 @@ chile-data-visual-explorer/
 ├── README.md
 └── LICENSE
 ```
+
+### **Getting started (developer)**
+
+Create a virtual environment and install dependencies:
+
+`python -m venv .venv`
+
+`source .venv/bin/activate` or `.venv\Scripts\activate` on Windows
+
+`pip install -r requirements.txt`

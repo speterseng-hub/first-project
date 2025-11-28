@@ -1,0 +1,12 @@
+pandas
+numpy
+yfinance
+requests
+plotly
+matplotlib
+streamlit
+python-dotenv
+tabula-py
+pdfminer.six
+geopandas
+folium
