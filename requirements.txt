@@ -5,8 +5,9 @@ requests
 plotly
 matplotlib
 streamlit
-python-dotenv
+dotenv
 tabula-py
 pdfminer.six
 geopandas
 folium
+pytest
