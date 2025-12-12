@@ -1,25 +1,16 @@
-# ===== Build stage =====
-FROM python:3.12-slim AS builder
+# Dockerfile
+FROM python:3.11-slim
 
+ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --prefix=/install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# ===== Runtime stage =====
-FROM python:3.12-slim
+COPY . .
 
-WORKDIR /app
+# Port for Cloud Run
+ENV PORT 8080
+EXPOSE 8080
 
-# agregar dependencias instaladas
-COPY --from=builder /install /usr/local
-
-# copiar código fuente
-COPY src ./src
-COPY tests ./tests
-COPY pyproject.toml .
-
-# añadir src al path
-ENV PYTHONPATH=/app/src
-
-CMD ["python"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
