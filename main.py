@@ -10,7 +10,7 @@ import os
 app = FastAPI(title="Stock Analytics GCP")
 
 app.include_router(router)
-print("DEBUG PROJECT_ID =", os.getenv("PROJECT_ID"))
+#print("DEBUG PROJECT_ID =", os.getenv("PROJECT_ID"))
 
 @app.get("/healthz")
 def health():
