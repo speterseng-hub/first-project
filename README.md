@@ -1,4 +1,4 @@
-# **Chile Data Visual Explorer**
+# **S&P500 Data Visual Explorer**
 
 **One-line**: Interactive data-visualization explorer combining public financial, macroeconomic, commodity, ESG and regional datasets focused on companies and markets connected to Chile.
 
