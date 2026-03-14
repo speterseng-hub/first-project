@@ -1,4 +1,5 @@
 # app/services/get_tickers.py
+import io
 import os, logging
 import pandas as pd
 from utils.bq import get_client, insert_rows
@@ -16,7 +17,7 @@ def run():
         response = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (X11; Linux x86_64)"})
         response.raise_for_status()
 
-        df = pd.read_html(response.text)[0]
+        df = pd.read_html(io.StringIO(response.text))[0]
         df = df.rename(columns=lambda c: c.replace("-", "_").replace(" ", "_").strip())
         df = df.rename(columns={"Symbol": "Ticker"})
         df["Updated"] = datetime.now(timezone.utc).isoformat()
