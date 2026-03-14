@@ -49,3 +49,15 @@ def agg_prices_endpoint():
 @router.get("/agg-returns", summary="Aggregate returns")
 def agg_returns_endpoint():
     return agg_returns.run()
+
+@router.get("/run-pipeline", summary="Run full pipeline in order")
+def run_pipeline_endpoint():
+    results = {}
+    results["tickers"]        = get_tickers.run()
+    results["daily_prices"]   = get_daily_prices.run()
+    results["returns"]        = compute_returns.run()
+    results["indicators"]     = compute_indicators.run()
+    results["snapshot_today"] = snapshot_today.run()
+    results["agg_prices"]     = agg_prices.run()
+    results["agg_returns"]    = agg_returns.run()
+    return results
