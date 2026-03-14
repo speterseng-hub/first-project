@@ -4,8 +4,13 @@ services:
   app:
     build: .
     container_name: market-analysis
+    ports:
+      - "8080:8080"
     volumes:
       - .:/app
+      - ${GOOGLE_APPLICATION_CREDENTIALS}:/secrets/sa-key.json:ro
+    env_file:
+      - .env
     environment:
-      PYTHONPATH: "/app/src"
-    command: bash
+      GOOGLE_APPLICATION_CREDENTIALS: /secrets/sa-key.json
+    command: uvicorn main:app --host 0.0.0.0 --port 8080 --reload
