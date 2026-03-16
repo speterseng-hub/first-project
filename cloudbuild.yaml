@@ -23,7 +23,7 @@ steps:
   - --platform=managed
   - --allow-unauthenticated
   - --service-account=market-analysis-sa@$PROJECT_ID.iam.gserviceaccount.com
-  - --set-env-vars=PROJECT_ID=$PROJECT_ID,RAW_DS=raw,ANALYTICS_DS=analytics,PRICES_TABLE=prices,PRICES_WITH_RETURNS=Prices_with_returns,TICKERS_TABLE=tickers,INTRADAY_TABLE=IntradayPrices,IND_TABLE=Indicators,TODAY_SNAPSHOT_TABLE=today_snapshot,AGG_PRICES_TABLE=agg_prices,AGG_RETURNS_TABLE=agg_returns
+  - --set-env-vars=PROJECT_ID=$PROJECT_ID,RAW_DS=raw,ANALYTICS_DS=analytics,PRICES_TABLE=prices,PRICES_WITH_RETURNS=Prices_with_returns,TICKERS_TABLE=tickers,INTRADAY_TABLE=IntradayPrices,IND_TABLE=indicators,TODAY_SNAPSHOT_TABLE=today_snapshot,AGG_PRICES_TABLE=agg_prices,AGG_RETURNS_TABLE=agg_returns
 
 # ── Streamlit dashboard ────────────────────────────────────────────────────────
 - name: 'gcr.io/cloud-builders/docker'
@@ -51,7 +51,7 @@ steps:
   - --platform=managed
   - --allow-unauthenticated
   - --service-account=market-analysis-sa@$PROJECT_ID.iam.gserviceaccount.com
-  - --set-env-vars=PROJECT_ID=$PROJECT_ID,RAW_DS=raw,ANALYTICS_DS=analytics,PRICES_TABLE=prices,PRICES_WITH_RETURNS=Prices_with_returns,TICKERS_TABLE=tickers,INTRADAY_TABLE=IntradayPrices,IND_TABLE=Indicators,TODAY_SNAPSHOT_TABLE=today_snapshot,AGG_PRICES_TABLE=agg_prices,AGG_RETURNS_TABLE=agg_returns
+  - --set-env-vars=PROJECT_ID=$PROJECT_ID,RAW_DS=raw,ANALYTICS_DS=analytics,PRICES_TABLE=prices,PRICES_WITH_RETURNS=Prices_with_returns,TICKERS_TABLE=tickers,INTRADAY_TABLE=IntradayPrices,IND_TABLE=indicators,TODAY_SNAPSHOT_TABLE=today_snapshot,AGG_PRICES_TABLE=agg_prices,AGG_RETURNS_TABLE=agg_returns
 
 images:
 - us-central1-docker.pkg.dev/$PROJECT_ID/market-analysis/stock-service:$SHORT_SHA
