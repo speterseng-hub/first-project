@@ -9,7 +9,7 @@ AN_DS      = os.environ.get("ANALYTICS_DS", "analytics")
 SNAP       = os.environ.get("TODAY_SNAPSHOT_TABLE", "today_snapshot")
 AGG_RET    = os.environ.get("AGG_RETURNS_TABLE", "agg_returns")
 PRICES     = os.environ.get("PRICES_TABLE", "prices")
-IND        = os.environ.get("IND_TABLE", "Indicators")
+IND        = os.environ.get("IND_TABLE", "indicators")
 TICKERS    = os.environ.get("TICKERS_TABLE", "tickers")
 
 def get_screener() -> pd.DataFrame:
