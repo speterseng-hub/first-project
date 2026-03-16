@@ -2,7 +2,8 @@
 import io
 import os, logging
 import pandas as pd
-from utils.bq import get_client, insert_rows
+from utils.bq import get_client
+from google.cloud import bigquery
 from datetime import datetime, timezone
 import requests
 
@@ -21,13 +22,14 @@ def run():
         df = df.rename(columns=lambda c: c.replace("-", "_").replace(" ", "_").strip())
         df = df.rename(columns={"Symbol": "Ticker"})
         df["Updated"] = datetime.now(timezone.utc).isoformat()
-        rows = df.to_dict(orient="records")
 
-        # Truncate then reload — list is ~500 rows, changes quarterly
-        get_client().query(f"TRUNCATE TABLE `{TABLE_ID}`").result()
+        # Load job with WRITE_TRUNCATE — atomically replaces table,
+        # avoids streaming buffer duplication from TRUNCATE + insert_rows
+        job_config = bigquery.LoadJobConfig(write_disposition="WRITE_TRUNCATE")
+        job = get_client().load_table_from_dataframe(df, TABLE_ID, job_config=job_config)
+        job.result()
 
-        inserted = insert_rows(TABLE_ID, rows)
-        return {"status": "ok", "rows": inserted}
+        return {"status": "ok", "rows": len(df)}
 
     except Exception as e:
         logging.exception("get_tickers failed")
