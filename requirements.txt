@@ -9,3 +9,5 @@ numpy
 requests
 python-dotenv
 lxml
+streamlit
+plotly

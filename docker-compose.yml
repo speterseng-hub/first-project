@@ -14,3 +14,18 @@ services:
     environment:
       GOOGLE_APPLICATION_CREDENTIALS: /secrets/sa-key.json
     command: uvicorn main:app --host 0.0.0.0 --port 8080 --reload
+
+  dashboard:
+    build: .
+    container_name: market-dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+      - ${GOOGLE_APPLICATION_CREDENTIALS}:/secrets/sa-key.json:ro
+    env_file:
+      - .env
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /secrets/sa-key.json
+      PYTHONPATH: /app
+    command: streamlit run dashboard/app.py --server.port 8501 --server.address 0.0.0.0
