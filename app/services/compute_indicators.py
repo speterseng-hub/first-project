@@ -7,7 +7,7 @@ def run():
     PROJECT_ID = os.environ.get("PROJECT_ID")
     RAW_DS = os.environ.get("RAW_DS", "raw")
     PRICES_TABLE = os.environ.get("PRICES_WITH_RETURNS", "Prices_with_returns")
-    IND_TABLE = os.environ.get("IND_TABLE", "Indicators")
+    IND_TABLE = os.environ.get("IND_TABLE", "indicators")
     #BQ = bigquery.Client(PROJECT_ID=PROJECT_ID)
     try:
         sql = f"""
